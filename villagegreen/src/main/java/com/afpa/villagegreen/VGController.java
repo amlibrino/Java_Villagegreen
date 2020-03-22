@@ -119,17 +119,17 @@ public class VGController implements Initializable {
     private void add_click(ActionEvent event) {//clic sur button ajout
         pane_ajout.setVisible(true);//afficher le formulaire ajout
         pane_detail.setVisible(false);
-        
+
     }
 
     @FXML
     private void update_click(ActionEvent event) {
-        
+
         pane_detail.setVisible(true);//afficher le formulaire detail
         pane_ajout.setVisible(false);
         
-        //FourniDAO f = new FourniDAO();
-        
+        int idx = list_fourni.getSelectionModel().getSelectedItem().getId(); //on recupere l'id et on stock
+
         txt_nom1.setText(list_fourni.getSelectionModel().getSelectedItem().getNom());
         txt_adresse1.setText(list_fourni.getSelectionModel().getSelectedItem().getAdresse());
         txt_cp1.setText(list_fourni.getSelectionModel().getSelectedItem().getCp());
@@ -138,13 +138,11 @@ public class VGController implements Initializable {
         txt_mobil1.setText(list_fourni.getSelectionModel().getSelectedItem().getMobile());
         txt_contact1.setText(list_fourni.getSelectionModel().getSelectedItem().getContact());
         txt_mail1.setText(list_fourni.getSelectionModel().getSelectedItem().getMail());
-        txt_pays1.getSelectionModel().getSelectedItem().getId();
-
+        int id = txt_pays1.getSelectionModel().getSelectedItem().getId();
         //txt_pays1.setText(list_fourni.getSelectionModel().getSelectedItem().getPays());
         //txt_pays1.setText(f.Find(list_fourni.getSelectionModel().getFocusedIndex()).getPays());
         //txt_pays1.getSelectionModel().getSelectedItem().getId();
         //txt_pays1.setPays(list_fourni.getSelectionModel().getSelectedItem().getId());
-
 
     }
 
@@ -170,120 +168,113 @@ public class VGController implements Initializable {
         Pattern reg_num = Pattern.compile("^\\d[\\d-.]{0,9}$");
         Pattern reg_cp = Pattern.compile("^\\d[\\d-.]{0,9}$");
 //déclaration de variable a comparer avec regex
-    String nom = this.txt_nom.getText();
-    String adresse = this.txt_adresse.getText();
-    String ville = this.txt_ville.getText();
-    String cp = this.txt_cp.getText();
-    String mail = this.txt_mail.getText();
-    String tel = this.txt_fixe.getText();
-    String mobile = this.txt_mobil.getText();
-    String contact = this.txt_contact.getText();
-    
+        String nom = this.txt_nom.getText();
+        String adresse = this.txt_adresse.getText();
+        String ville = this.txt_ville.getText();
+        String cp = this.txt_cp.getText();
+        String mail = this.txt_mail.getText();
+        String tel = this.txt_fixe.getText();
+        String mobile = this.txt_mobil.getText();
+        String contact = this.txt_contact.getText();
+
 //nom
-    if (reg_text.matcher (nom).matches()) {
-        f.setNom(txt_nom.getText());// assigner les valeurs nom saisi au f a inserer 
-        txt_nom.setStyle("");
-    }else {
-        txt_nom.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }
+        if (reg_text.matcher(nom).matches()) {
+            f.setNom(txt_nom.getText());// assigner les valeurs nom saisi au f a inserer 
+            txt_nom.setStyle("");
+        } else {
+            txt_nom.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
 //adresse
-    if (reg_text.matcher (adresse).matches()) {
-        f.setAdresse((adresse));// assigner les valeurs nom saisi au c a inserer 
-        txt_adresse.setStyle("");
-    }
-    else {
-        txt_adresse.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
+        if (reg_text.matcher(adresse).matches()) {
+            f.setAdresse((adresse));// assigner les valeurs nom saisi au c a inserer 
+            txt_adresse.setStyle("");
+        } else {
+            txt_adresse.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
 
-    }
+        }
 //ville
-    if (reg_text.matcher(ville).matches()) {
-        f.setVille(ville);// assigner les valeurs nom saisi au c a inserer 
-        txt_ville.setStyle("");
+        if (reg_text.matcher(ville).matches()) {
+            f.setVille(ville);// assigner les valeurs nom saisi au c a inserer 
+            txt_ville.setStyle("");
 
-    }
-    else {
-        txt_ville.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }
-    //cp
-    if (reg_cp.matcher(cp).matches()) {
-        f.setCp(cp);// assigner les valeurs nom saisi au c a inserer 
-        txt_cp.setStyle("");
+        } else {
+            txt_ville.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
+        //cp
+        if (reg_cp.matcher(cp).matches()) {
+            f.setCp(cp);// assigner les valeurs nom saisi au c a inserer 
+            txt_cp.setStyle("");
 
-    }
-    else {
-        txt_cp.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }    
-    //mail
-    if (reg_mail.matcher(mail).matches()) {
-        f.setMail(mail);// assigner les valeurs nom saisi au c a inserer 
-        txt_mail.setStyle("");
+        } else {
+            txt_cp.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
+        //mail
+        if (reg_mail.matcher(mail).matches()) {
+            f.setMail(mail);// assigner les valeurs nom saisi au c a inserer 
+            txt_mail.setStyle("");
 
-    }
-    else {
-        txt_mail.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }  
-    //tel fixe 
-    if (reg_num.matcher(tel).matches()) {
-        f.setTel(tel);// assigner les valeurs nom saisi au c a inserer 
-        txt_fixe.setStyle("");
-    }
-    else {
-        txt_fixe.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }    
-    //tel mobiile 
-    if (reg_num.matcher(mobile).matches()) {
-        f.setMobile(mobile);// assigner les valeurs nom saisi au c a inserer 
-        txt_mobil.setStyle("");
-    }
-    else {
-        txt_mobil.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }
-    //contact 
-    if (reg_text.matcher(contact).matches()) {
-        f.setMail(contact);// assigner les valeurs nom saisi au c a inserer 
-        txt_contact.setStyle("");
-    }
-    else {
-        txt_contact.setStyle("-fx-border-color :red");
-        Error_ajout.setVisible(true);
-        isOk = false;
-    }     
-    
-    if (isOk) { // si regex accepté , pas d erreur 
-        Error_ajout.setVisible(false);
-        f.setNom(txt_nom.getText());// assigner les valeurs nom saisi au c a inserer 
-        f.setAdresse(txt_adresse.getText());
-        f.setVille(txt_ville.getText());
-        f.setCp(txt_cp.getText());
-        f.setMail(txt_mail.getText());
-        f.setTel(txt_fixe.getText());
-        f.setMobile(txt_mobil.getText());
-        f.setContact(txt_contact.getText());
-        
-        //pour ajouter id pays ??? comment faire lol
-        f.setPays(txt_pays.getSelectionModel().getSelectedItem().getId());
+        } else {
+            txt_mail.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
+        //tel fixe 
+        if (reg_num.matcher(tel).matches()) {
+            f.setTel(tel);// assigner les valeurs nom saisi au c a inserer 
+            txt_fixe.setStyle("");
+        } else {
+            txt_fixe.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
+        //tel mobiile 
+        if (reg_num.matcher(mobile).matches()) {
+            f.setMobile(mobile);// assigner les valeurs nom saisi au c a inserer 
+            txt_mobil.setStyle("");
+        } else {
+            txt_mobil.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
+        //contact 
+        if (reg_text.matcher(contact).matches()) {
+            f.setMail(contact);// assigner les valeurs nom saisi au c a inserer 
+            txt_contact.setStyle("");
+        } else {
+            txt_contact.setStyle("-fx-border-color :red");
+            Error_ajout.setVisible(true);
+            isOk = false;
+        }
 
-        ajout.Insert(f);//appel de la methose insert de la class clientDAO
-        model.add(f);//ajout dans le tableau vu (model)
-    }
-}
+        if (isOk) { // si regex accepté , pas d erreur 
+            Error_ajout.setVisible(false);
+            f.setNom(txt_nom.getText());// assigner les valeurs nom saisi au c a inserer 
+            f.setAdresse(txt_adresse.getText());
+            f.setVille(txt_ville.getText());
+            f.setCp(txt_cp.getText());
+            f.setMail(txt_mail.getText());
+            f.setTel(txt_fixe.getText());
+            f.setMobile(txt_mobil.getText());
+            f.setContact(txt_contact.getText());
 
-@FXML
-private void Effacer(ActionEvent event) {
+            //pour ajouter id pays ??? 
+            f.setPays(txt_pays.getSelectionModel().getSelectedItem().getId());
+
+            ajout.Insert(f);//appel de la methose insert de la class clientDAO
+            model.add(f);//ajout dans le tableau vu (model)
+        }
+    }
+
+    @FXML
+    private void Effacer(ActionEvent event) {
         //efface champs ajout
         txt_nom.clear();
         txt_cp.clear();
@@ -307,10 +298,10 @@ private void Effacer(ActionEvent event) {
     }
 
     @FXML
-private void Annuler(ActionEvent event) {
-    pane_ajout.setVisible(false);
-    pane_detail.setVisible(false);
-    
+    private void Annuler(ActionEvent event) {
+        pane_ajout.setVisible(false);
+        pane_detail.setVisible(false);
+
 //efface champs ajout
         txt_nom.clear();
         txt_cp.clear();
@@ -333,8 +324,8 @@ private void Annuler(ActionEvent event) {
     }
 
     @FXML
-private void OK_Update(ActionEvent event) {
-    
+    private void OK_Update(ActionEvent event) {
+
         FourniDAO modif = new FourniDAO();
         Fourni f = new Fourni();
         boolean isOk = true;
@@ -344,115 +335,108 @@ private void OK_Update(ActionEvent event) {
         Pattern reg_num = Pattern.compile("^\\d[\\d-.]{0,9}$");
         Pattern reg_cp = Pattern.compile("^\\d[\\d-.]{0,9}$");
 //déclaration de variable a comparer avec regex
-    String nom = this.txt_nom1.getText();
-    String adresse = this.txt_adresse1.getText();
-    String ville = this.txt_ville1.getText();
-    String cp = this.txt_cp1.getText();
-    String mail = this.txt_mail1.getText();
-    String tel = this.txt_fixe1.getText();
-    String mobile = this.txt_mobil1.getText();
-    String contact = this.txt_contact1.getText();
-    String pays = this.txt_pays1.getId();
-    
+        String nom = this.txt_nom1.getText();
+        String adresse = this.txt_adresse1.getText();
+        String ville = this.txt_ville1.getText();
+        String cp = this.txt_cp1.getText();
+        String mail = this.txt_mail1.getText();
+        String tel = this.txt_fixe1.getText();
+        String mobile = this.txt_mobil1.getText();
+        String contact = this.txt_contact1.getText();
+        String pays = this.txt_pays1.getId();
+
 //nom
-    if (reg_text.matcher (nom).matches()) {
-        f.setNom(txt_nom1.getText());// assigner les valeurs nom saisi au f a inserer 
-        txt_nom1.setStyle("");
-    }else {
-        txt_nom1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }
+        if (reg_text.matcher(nom).matches()) {
+            f.setNom(txt_nom1.getText());// assigner les valeurs nom saisi au f a inserer 
+            txt_nom1.setStyle("");
+        } else {
+            txt_nom1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
 //adresse
-    if (reg_text.matcher (adresse).matches()) {
-        f.setAdresse((adresse));// assigner les valeurs nom saisi au c a inserer 
-        txt_adresse1.setStyle("");
-    }
-    else {
-        txt_adresse1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
+        if (reg_text.matcher(adresse).matches()) {
+            f.setAdresse((adresse));// assigner les valeurs nom saisi au c a inserer 
+            txt_adresse1.setStyle("");
+        } else {
+            txt_adresse1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
 
-    }
+        }
 //ville
-    if (reg_text.matcher(ville).matches()) {
-        f.setVille(ville);// assigner les valeurs nom saisi au c a inserer 
-        txt_ville1.setStyle("");
+        if (reg_text.matcher(ville).matches()) {
+            f.setVille(ville);// assigner les valeurs nom saisi au c a inserer 
+            txt_ville1.setStyle("");
 
-    }
-    else {
-        txt_ville1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }
-    //cp
-    if (reg_cp.matcher(cp).matches()) {
-        f.setCp(cp);// assigner les valeurs nom saisi au c a inserer 
-        txt_cp1.setStyle("");
+        } else {
+            txt_ville1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
+        //cp
+        if (reg_cp.matcher(cp).matches()) {
+            f.setCp(cp);// assigner les valeurs nom saisi au c a inserer 
+            txt_cp1.setStyle("");
 
-    }
-    else {
-        txt_cp1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }    
-    //mail
-    if (reg_mail.matcher(mail).matches()) {
-        f.setMail(mail);// assigner les valeurs nom saisi au c a inserer 
-        txt_mail1.setStyle("");
+        } else {
+            txt_cp1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
+        //mail
+        if (reg_mail.matcher(mail).matches()) {
+            f.setMail(mail);// assigner les valeurs nom saisi au c a inserer 
+            txt_mail1.setStyle("");
 
-    }
-    else {
-        txt_mail1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }  
-    //tel fixe 
-    if (reg_num.matcher(tel).matches()) {
-        f.setTel(tel);// assigner les valeurs nom saisi au c a inserer 
-        txt_fixe1.setStyle("");
-    }
-    else {
-        txt_fixe1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }    
-    //tel mobiile 
-    if (reg_num.matcher(mobile).matches()) {
-        f.setMobile(mobile);// assigner les valeurs nom saisi au c a inserer 
-        txt_mobil1.setStyle("");
-    }
-    else {
-        txt_mobil1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }
-    //contact 
-    if (reg_text.matcher(contact).matches()) {
-        f.setMail(contact);// assigner les valeurs nom saisi au c a inserer 
-        txt_contact1.setStyle("");
-    }
-    else {
-        txt_contact1.setStyle("-fx-border-color :red");
-        Error_modif.setVisible(true);
-        isOk = false;
-    }     
-    
-    if (isOk) { // si regex accepté , pas d erreur 
-        Error_modif.setVisible(false);
-        f.setNom(txt_nom1.getText());// assigner les valeurs nom saisi au c a inserer 
-        f.setAdresse(txt_adresse1.getText());
-        f.setVille(txt_ville1.getText());
-        f.setCp(txt_cp1.getText());
-        f.setPays(txt_pays.getSelectionModel().getSelectedItem().getId());
-        f.setMail(txt_mail1.getText());
-        f.setTel(txt_fixe1.getText());
-        f.setMobile(txt_mobil1.getText());
-        f.setContact(txt_contact1.getText());    
-        modif.Update(f);//appel de la methose upadte de la class clientDAO
-        list_fourni.refresh();//rafréchir la liste tableau
-        pane_detail.setVisible(false);  //cacher le pane affiche detail 
-    }
+        } else {
+            txt_mail1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
+        //tel fixe 
+        if (reg_num.matcher(tel).matches()) {
+            f.setTel(tel);// assigner les valeurs nom saisi au c a inserer 
+            txt_fixe1.setStyle("");
+        } else {
+            txt_fixe1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
+        //tel mobiile 
+        if (reg_num.matcher(mobile).matches()) {
+            f.setMobile(mobile);// assigner les valeurs nom saisi au c a inserer 
+            txt_mobil1.setStyle("");
+        } else {
+            txt_mobil1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
+        //contact 
+        if (reg_text.matcher(contact).matches()) {
+            f.setMail(contact);// assigner les valeurs nom saisi au c a inserer 
+            txt_contact1.setStyle("");
+        } else {
+            txt_contact1.setStyle("-fx-border-color :red");
+            Error_modif.setVisible(true);
+            isOk = false;
+        }
+
+        if (isOk) { // si regex accepté , pas d erreur 
+            Error_modif.setVisible(false);
+            f.setNom(txt_nom1.getText());// assigner les valeurs nom saisi au c a inserer 
+            f.setAdresse(txt_adresse1.getText());
+            f.setCp(txt_cp1.getText());
+            f.setVille(txt_ville1.getText());
+            f.setPays(txt_pays1.getSelectionModel().getSelectedItem().getId());
+            f.setMail(txt_mail1.getText());
+            f.setTel(txt_fixe1.getText());
+            f.setMobile(txt_mobil1.getText());
+            f.setContact(txt_contact1.getText());
+            modif.Update(f);//appel de la methose upadte de la class clientDAO
+            list_fourni.refresh();//rafréchir la liste tableau
+            pane_detail.setVisible(false);  //cacher le pane affiche detail 
+        }
     }
 
     private boolean setVisible() {
