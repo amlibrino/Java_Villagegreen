@@ -124,8 +124,12 @@ public class VGController implements Initializable {
 
     @FXML
     private void update_click(ActionEvent event) {
+        
         pane_detail.setVisible(true);//afficher le formulaire detail
         pane_ajout.setVisible(false);
+        
+        //FourniDAO f = new FourniDAO();
+        
         txt_nom1.setText(list_fourni.getSelectionModel().getSelectedItem().getNom());
         txt_adresse1.setText(list_fourni.getSelectionModel().getSelectedItem().getAdresse());
         txt_cp1.setText(list_fourni.getSelectionModel().getSelectedItem().getCp());
@@ -134,9 +138,12 @@ public class VGController implements Initializable {
         txt_mobil1.setText(list_fourni.getSelectionModel().getSelectedItem().getMobile());
         txt_contact1.setText(list_fourni.getSelectionModel().getSelectedItem().getContact());
         txt_mail1.setText(list_fourni.getSelectionModel().getSelectedItem().getMail());
+        txt_pays1.getSelectionModel().getSelectedItem().getId();
+
+        //txt_pays1.setText(list_fourni.getSelectionModel().getSelectedItem().getPays());
+        //txt_pays1.setText(f.Find(list_fourni.getSelectionModel().getFocusedIndex()).getPays());
         //txt_pays1.getSelectionModel().getSelectedItem().getId();
         //txt_pays1.setPays(list_fourni.getSelectionModel().getSelectedItem().getId());
-        //txt_pays1.getSelectionModel().setPays(txt_pays1.getSelectionModel().getSelectedItem().getId());
 
 
     }
@@ -345,7 +352,7 @@ private void OK_Update(ActionEvent event) {
     String tel = this.txt_fixe1.getText();
     String mobile = this.txt_mobil1.getText();
     String contact = this.txt_contact1.getText();
-    String f_pays = this.txt_pays1.getId();
+    String pays = this.txt_pays1.getId();
     
 //nom
     if (reg_text.matcher (nom).matches()) {
