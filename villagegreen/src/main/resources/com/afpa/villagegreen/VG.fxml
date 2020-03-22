@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="910.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.afpa.villagegreen.VGController">
+    <stylesheets>
+        <URL value="@/styles/vg.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="list_fourni" layoutX="14.0" layoutY="44.0" prefHeight="341.0" prefWidth="233.0" style="-fx-background-color: #FFCDD2;">
+        <columns>
+          <TableColumn fx:id="col_nom" prefWidth="129.0" text="Nom du fournisseur" />
+          <TableColumn fx:id="col_ville" prefWidth="102.0" text="Ville" />
+            <TableColumn fx:id="col_id" prefWidth="33.0" text="id" />
+        </columns>
+      </TableView>
+      <VBox layoutX="298.0" layoutY="53.0" prefHeight="332.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#add_click" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #00E676;" text="Ajouter">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#update_click" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #64FFDA;" text="Détail">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #FF9E80;" text="Supprimer">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Pane fx:id="pane_ajout" layoutX="438.0" layoutY="34.0" prefHeight="505.0" prefWidth="330.0" style="-fx-background-color: #B9F6CA;" visible="false">
+         <children>
+            <Label layoutX="24.0" layoutY="14.0" prefHeight="21.0" prefWidth="183.0" text="Ajouter un fournisseur">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="56.0" text="Nom : " />
+            <Label layoutX="26.0" layoutY="86.0" text="Adresse : " />
+            <Label layoutX="23.0" layoutY="121.0" text="Code postal : " />
+            <Label layoutX="26.0" layoutY="161.0" text="Ville : " />
+            <Label layoutX="25.0" layoutY="202.0" text="Pays : " />
+            <Label layoutX="25.0" layoutY="246.0" text="Mail : " />
+            <Label layoutX="25.0" layoutY="285.0" text="Téléphone fixe :" />
+            <Label layoutX="24.0" layoutY="322.0" text="Téléphone mobile : " />
+            <Label layoutX="23.0" layoutY="362.0" text="Contacte : " />
+            <TextField fx:id="txt_nom" layoutX="130.0" layoutY="52.0" />
+            <TextField fx:id="txt_adresse" layoutX="130.0" layoutY="82.0" />
+            <TextField fx:id="txt_cp" layoutX="130.0" layoutY="117.0" />
+            <TextField fx:id="txt_ville" layoutX="130.0" layoutY="157.0" />
+            <ComboBox fx:id="txt_pays" layoutX="129.0" layoutY="198.0" prefWidth="150.0" />
+            <TextField fx:id="txt_mail" layoutX="130.0" layoutY="242.0" />
+            <TextField fx:id="txt_fixe" layoutX="133.0" layoutY="281.0" />
+            <TextField fx:id="txt_mobil" layoutX="133.0" layoutY="318.0" />
+            <TextField fx:id="txt_contact" layoutX="133.0" layoutY="358.0" />
+            <Button layoutX="41.0" layoutY="458.0" mnemonicParsing="false" onAction="#OK_Insert" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #00E676;" text="OK" />
+            <Button layoutX="131.0" layoutY="458.0" mnemonicParsing="false" onAction="#Effacer" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #FFB74D;" text="Effacer" />
+            <Button layoutX="220.0" layoutY="458.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #FF9E80;" text="Annuler" />
+            <Label fx:id="Error_ajout" layoutX="66.0" layoutY="413.0" text="Veuillez corriger les champs en rouge" textFill="#f21722" visible="false" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_detail" layoutX="438.0" layoutY="44.0" prefHeight="505.0" prefWidth="313.0" style="-fx-background-color: #64FFDA;" visible="false">
+         <children>
+            <Label layoutX="24.0" layoutY="14.0" prefHeight="21.0" prefWidth="183.0" text="Modifier le fournisseur">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="56.0" text="Nom : " />
+            <Label layoutX="26.0" layoutY="86.0" text="Adresse : " />
+            <Label layoutX="23.0" layoutY="121.0" text="Code postal : " />
+            <Label layoutX="26.0" layoutY="161.0" text="Ville : " />
+            <Label layoutX="25.0" layoutY="202.0" text="Pays : " />
+            <Label layoutX="25.0" layoutY="246.0" text="Mail : " />
+            <Label layoutX="25.0" layoutY="285.0" text="Téléphone fixe :" />
+            <Label layoutX="24.0" layoutY="322.0" text="Téléphone mobile : " />
+            <Label layoutX="23.0" layoutY="362.0" text="Contacte : " />
+            <TextField fx:id="txt_nom1" layoutX="130.0" layoutY="52.0" />
+            <TextField fx:id="txt_adresse1" layoutX="130.0" layoutY="82.0" />
+            <TextField fx:id="txt_cp1" layoutX="130.0" layoutY="117.0" />
+            <TextField fx:id="txt_ville1" layoutX="130.0" layoutY="157.0" />
+            <ComboBox fx:id="txt_pays1" layoutX="129.0" layoutY="198.0" prefWidth="150.0" />
+            <TextField fx:id="txt_mail1" layoutX="130.0" layoutY="242.0" />
+            <TextField fx:id="txt_fixe1" layoutX="133.0" layoutY="281.0" />
+            <TextField fx:id="txt_mobil1" layoutX="133.0" layoutY="318.0" />
+            <TextField fx:id="txt_contact1" layoutX="133.0" layoutY="358.0" />
+            <Button layoutX="34.0" layoutY="451.0" mnemonicParsing="false" onAction="#OK_Update" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #00E676;" text="Modifier" />
+            <Button layoutX="124.0" layoutY="451.0" mnemonicParsing="false" onAction="#Effacer" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #FFB74D;" text="Effacer" />
+            <Button layoutX="213.0" layoutY="451.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #FF9E80;" text="Annuler" />
+            <Label fx:id="Error_modif" layoutX="58.0" layoutY="416.0" text="Veuillez corriger les champs en rouge" textFill="#f21722" visible="false" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
