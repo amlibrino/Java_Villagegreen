@@ -65,7 +65,8 @@ public class FourniDAO extends dbConnect {
             stm.setString(7, f.getTel());
             stm.setString(8, f.getMobile());
             stm.setString(9, f.getContact());
-
+// J'ai ajouté ça mais ça ne résout qu'une partie du problème
+            stm.setInt(10, f.getId());
             stm.executeUpdate();
 
             stm.close();
