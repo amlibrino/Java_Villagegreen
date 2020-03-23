@@ -433,7 +433,7 @@ public class VGController implements Initializable {
             f.setTel(txt_fixe1.getText());
             f.setMobile(txt_mobil1.getText());
             f.setContact(txt_contact1.getText());
-            modif.Update(f);//appel de la methose upadte de la class clientDAO
+            modif.Update(f);//appel de la methose upadte de la class FourniDAO
             list_fourni.refresh();//rafréchir la liste tableau
             pane_detail.setVisible(false);  //cacher le pane affiche detail 
         }
